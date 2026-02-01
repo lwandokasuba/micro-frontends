@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  main:
+    build: ./main
+    ports:
+      - "3000:3000"
+    environment:
+      - CATALOG_URL=http://frontend1:3001
+      - SHOP_URL=http://frontend2:3002
+      - ACCOUNT_URL=http://frontend3:3003
+    depends_on:
+      - frontend1
+      - frontend2
+      - frontend3
+
+  frontend1:
+    build: ./frontend1
+    ports:
+      - "3001:3001"
+
+  frontend2:
+    build: ./frontend2
+    ports:
+      - "3002:3002"
+
+  frontend3:
+    build: ./frontend3
+    ports:
+      - "3003:3003"
